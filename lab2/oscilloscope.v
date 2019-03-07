@@ -51,13 +51,13 @@ parameter Amp=3.0;				// maximum amplitude of sinusoidal wave [-Amp, Amp]
 parameter integer Apixels=Amp/IncPixY;		// number of pixels to represent the maximum amplitude	
 
 //Vector to store the input signal (Section 6.1)
-// parameter integer nc=						
-// reg [] capturedVals [(nc*256)-1:0]; 		// vector with values of input signal
-// integer ;					// index of the vector
+parameter integer nc=1						
+reg [15:0] capturedVals [(nc*256)-1:0]; 		// vector with values of input signal
+integer i=0;					// index of the vector
 
 //Read the signal values from the vector (Section 6.2)
-//integer ; 					// read the correct element of the vector
-//parameter integer nf=; 			//Vector points between two consecutive pixels 
+integer j; 					// read the correct element of the vector
+parameter integer nf=2; 			//Vector points between two consecutive pixels 
 
 //Value of the current pixel (Section 6.2 and 6.3)
 reg [9:0] ValforVGA; 
@@ -92,28 +92,31 @@ VGA_Controller VGA_ins( .reset(1'b0),
 						
 
 // Store input signal in a vector (Section 6.1)			
-/*
 
-always@()
+always@(posedge CLOCK_50)
 begin
-...
-		capturedVals[i]<=;
-...
+           
+	 capturedVals[i]<=signal;
+	 
+	 if(i=255)
+	 	i<=0;
+	 else	    
+		i<=i+1;
+
 end
-*/
+
 
 // Read the correct point of the signal stored in the vector and calculate the pixel associated given the amplitude and the parameters of the oscilloscope (Section 6.2)
-/*
+
 always@(negedge iVGA_CLK)
 begin
 	if
 		...
-		ValforVGA <=  ;
+		ValforVGA <=   ;
 	else
 		...
 	
-end
-*/					
+end				
 
 // Calculate the RGB values
 
