@@ -143,10 +143,27 @@ begin
 		r_data<=8'd255;
 		end
 		
-	else if ()
+	else if (()&&())
 	    begin
-	    
+	    b_data<=8'd255;
+		g_data<=8'd255;
+		r_data<=8'd255;
 	    end
+	    
+	else if (()&&())
+	    begin
+	    b_data<=8'd255;
+		g_data<=8'd255;
+		r_data<=8'd255;
+	    end
+	    
+    else if (CX==ValforVGA)
+	    begin
+	    b_data<=8'd255;
+		g_data<=8'd255;
+		r_data<=8'd255;
+	    end
+	    
 	//Everything else is black
 	else
 		begin
