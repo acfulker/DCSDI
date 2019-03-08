@@ -111,8 +111,8 @@ end
 always@(negedge iVGA_CLK)
 begin
 	if (cBLANK_n)
-		ValforVGA <= Apixels((signal-32768)/32768)+239  ;
-		oldValforVGA<=ValforVGA
+		ValforVGA <= Apixels((capturedVals[j]-32768)/32768)+239  ;
+		
 		if (j==254)
 		    j<=0;
 		else
@@ -128,6 +128,7 @@ end
 
 always@(negedge iVGA_CLK)
 begin 
+     oldValforVGA<=ValforVGA;
 	//display the vertical guide lines
 	 if (CX==63||CX==127||CX==191||CX==319||CX==383||CX==447||CX==511||CX==575)
 		begin
