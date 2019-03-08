@@ -111,7 +111,7 @@ end
 always@(negedge iVGA_CLK)
 begin
 	if (cBLANK_n)
-		ValforVGA <=   ;
+		ValforVGA <= Apixels((signal-32768)/32768)+239  ;
 		oldValforVGA<=ValforVGA
 		if (j==254)
 		    j<=0;
@@ -119,6 +119,8 @@ begin
 		    j<=j+2;
 	else
 		j<=0;
+		ValforVGA<=0;
+		oldValforVGA<=0;
 	
 end				
 
@@ -136,10 +138,15 @@ begin
 	//display the horizontal guide lines
 	else if (CY==59||CY==119||CY==179||CY==239||CY==299||CY==359||CY==419)
 		begin
-      b_data<=8'd255;
+        b_data<=8'd255;
 		g_data<=8'd255;
 		r_data<=8'd255;
 		end
+		
+	else if ()
+	    begin
+	    
+	    end
 	//Everything else is black
 	else
 		begin
