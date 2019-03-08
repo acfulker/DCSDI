@@ -56,7 +56,7 @@ reg [15:0] capturedVals [(nc*256)-1:0]; 		// vector with values of input signal
 integer i=0;					// index of the vector
 
 //Read the signal values from the vector (Section 6.2)
-integer j; 					// read the correct element of the vector
+integer j=0; 					// read the correct element of the vector
 parameter integer nf=2; 			//Vector points between two consecutive pixels 
 
 //Value of the current pixel (Section 6.2 and 6.3)
@@ -110,11 +110,15 @@ end
 
 always@(negedge iVGA_CLK)
 begin
-	if
-		...
+	if (cBLANK_n)
 		ValforVGA <=   ;
+		oldValforVGA<=ValforVGA
+		if (j==254)
+		    j<=0;
+		else
+		    j<=j+2;
 	else
-		...
+		j<=0;
 	
 end				
 
